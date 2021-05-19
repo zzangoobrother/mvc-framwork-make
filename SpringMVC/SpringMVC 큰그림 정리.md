@@ -1,4 +1,4 @@
-#SpringMVC 구조 정리
+# SpringMVC 구조 정리
 
 ![캡처6](https://user-images.githubusercontent.com/42162127/118816266-f52b9980-b8ec-11eb-9702-32c3fbfcb3aa.PNG)
 
@@ -21,7 +21,7 @@ DispatcherServlet의 핵심인 doDispatch() 코드가 실행된다.
 doDispatch()에 SpringMVC의 모든 구조가 다 들이 있다.
 
 DispatcherServlet.doDispatch()
-```
+```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
   HttpServletRequest processedRequest = request;
   HandlerExecutionChain mappedHandler = null;
