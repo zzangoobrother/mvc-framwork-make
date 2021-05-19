@@ -68,3 +68,15 @@ protected void render(ModelAndView mv, HttpServletRequest request, HttpServletRe
   view.render(mv.getModelInternal(), request, response);
 }
 ```
+- 동작순서
+1. 핸들러 조회 : URL에 매핑된 핸들러 조회
+2. 핸들러 어댑터 조회 : 핸들러를 실행할 수 있는 어댑터 조회
+3. 핸들러 어댑터 실행 : 핸들러 어댑터 실행
+4. 핸들러 실행 : 핸들러 어댑터가 실제 핸들러 실행
+5. ModelAndView 반환 : 핸들러 어댑터가 반환하는 정보를 ModelAndView로 변환해서 반환
+6. viewResolver 호출 : viewResolver 찾고 실행
+7. view 반환 : view 논리 이름을 물리 이름으로 바꾸고, 렌더링 역할을 담당하는 view 객체를 반환
+8. view 렌더링 : view 렌더링
+
+스프링MVC의 큰 강점은 DispatcherServlet 코드의 변경 없이 원하는 기능을 변경하거나 확장할 수 있다는 것이다.
+대부분을 확장 가능하게 인터페이스로 제공한다.
