@@ -1,0 +1,47 @@
+# 핸들러 매핑, 핸들러 어댑터
+
+HandlerMapping
+0 = RequestMappingHandlerMapping : 에노테이션 기반 컨트롤러 @RequestMapping 사용
+1 = BeanNameUrlHandlerMapping : 스프링 빈 이름으로 핸들러 찾음
+
+HandlerAdqpter
+0 = RequestMappingHandlerAdqpter : 에노테이션 기반 컨트롤러 @RequestMapping 사용
+1 = HttpRequestHandlerAdapter : HttpRequestHandler 처리
+2 = SimpleControllerHandlerAdapter : Controller 인터페이스 처리
+
+1. 핸들러 매핑으로 핸들러 조회
+- HandlerMapping을 순서대로 실행, 핸들러를 찾는다.
+
+2. 핸들러 어댑터 조회
+- HandlerAdqpter의 supports()를 순서대로 호출
+
+3. 핸들러 어댑터 실행
+
+실무에서는 @RequestMapping 사용
+RequestMappingHandlerMapping, RequestMappingHandlerAdqpter 이다.
+
+
+# 뷰리졸버
+
+샐행방식
+
+1. 핸들러 어댑터 호출
+- 논리 뷰 이름 출력
+
+2. viewResolver 호출
+- BeanNameViewResolver 에서 먼저 빈 이름으로 뷰를 찾는다.
+  없을 시에는 InternalResourceViewResolver를 호출한다.
+
+3. InternalResourceViewResolver
+- InternalResourceViewResolver는 appication.properties에 등록한
+  spring.mvc.view.prefix, spring.mvc.view.suffix 정보를 사용한다.
+  
+4. InternalResourceView
+- JSP처럼 forward()를 호출 할 경우 사용
+
+5. view.render()
+- view.render()가 호출
+
+PS
+- JSP를 제외한 나머지 뷰 템플릿은 forward() 과정 없이 바로 렌더링 된다.
+- Thymeleaf 뷰 템플릿은 ThymeleafViewResolver를 등록해야한다.
