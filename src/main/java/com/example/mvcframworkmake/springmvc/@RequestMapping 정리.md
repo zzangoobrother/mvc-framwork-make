@@ -11,3 +11,26 @@
 
 3. ModelAndView
 - 모델과 뷰 정보를 담아서 반환
+
+# HTTP응답 - 정적 리소스, 뷰 템플릿
+
+- 정적 리소스 : 정적인 HTML, css, js 제공
+- 뷰 템플릿 : 동적인 HTML
+- HTTP 메시지 : HTTP 메시지 바디에 JSON 같은 데이터
+
+1. 정적 리소스
+ - src/main/resources/static 경로로 파일을 변경 없이 그대로 서비스한다.
+
+2. 뷰 템플릿
+ - src/main/resources/templates 경로를 가진다.
+
+View vs HTTP메시지
+@ResponseBody가 없으면 뷰리졸버가 실행, @ResponseBody가 있으면 뷰리졸버가 실해아지 않고, HTTP 메시지 바디에 문자가 입력된다.
+
+# HTTP API, 메시지 바디에 직접 입력
+```
+@GetMapping
+public void v1(HttpServletResponse response) throws IOException {
+  response.getWriter().write("ok");
+ }
+```
