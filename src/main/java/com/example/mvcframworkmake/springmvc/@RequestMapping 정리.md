@@ -28,7 +28,7 @@ View vs HTTP메시지
 @ResponseBody가 없으면 뷰리졸버가 실행, @ResponseBody가 있으면 뷰리졸버가 실해아지 않고, HTTP 메시지 바디에 문자가 입력된다.
 
 # HTTP API, 메시지 바디에 직접 입력
-```
+```java
 @GetMapping
 public void v1(HttpServletResponse response) throws IOException {
   response.getWriter().write("ok");
