@@ -32,5 +32,48 @@ View vs HTTP메시지
 @GetMapping
 public void v1(HttpServletResponse response) throws IOException {
   response.getWriter().write("ok");
- }
+}
+
+@GetMapping
+public ResponseEntity<String> v2() {
+ return new ResponseEntity<>(ok", HttpStatus.OK);
+}
+
+@ResponseBody
+@GetMapping
+public String V3() {
+ return "ok";
+}
+
+@GetMapping
+public ResponseEntity<HelloData> v4() {
+ HelloData helloData = new HelloData();
+ helloData.setUsername("userA");
+ helloData.setAge(20);
+ return new ResponseEntity<>(helloData, HttpStatus.OK);
+}
+
+@ResponseStatus(HttpStatus.OK)
+@ResponseBody
+@GetMapping
+public HelloData v5() {
+ HelloData helloData = new HelloData();
+ helloData.setUsername("userA");
+ helloData.setAge(20);
+ return helloData;
+}
 ```
+1. v1
+ - HttpServletResponse 객체를 통해 HTTP 메시지 바디에 응답 전달
+
+2. v2
+ - HttpEntity를 상속 받는 ResponseEntity로 응답
+
+3. v3
+ - @ResponseBody를 사용하여 HTTP 메시지 컨버터를 통해 HTTP 메시지 직접 입력
+
+4. v4
+ - ResponseEntity를 반환하여 HTTP메시지 컨버터를 통해 HSON 형식으로 변환하여 응답
+
+5. v5
+ - return을 객체로 응답하면 상태코드 응답을 위한 @ResponseStatus 애노테이션을 사용해야 한다.
