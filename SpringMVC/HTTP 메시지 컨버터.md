@@ -30,7 +30,7 @@ public interface HttpMessageConverter<T> {
 스프링 부트는 대상 클래스 타입과 미디어 타입 둘을 체크해서 사용여부를 결정한다. 만약 만족하지 않으면 다음 메시지 컨버터로 넘어간다.
 
 - ByteArrayHttpMessageConverter : byte[] 처리
-  1. 클래스타입 : byte[], 미디어타입 : '*'/'*'
+  1. 클래스타입 : byte[], 미디어타입 : `*`/`*`   
   ex) 요청 - @RequestBody byte[] data, 응답 - @ResponseBody return byte[] / 미디어타입 : application/octet-stream
 
 - StringHttpMessageConverter : String 문자 데이터 처리
